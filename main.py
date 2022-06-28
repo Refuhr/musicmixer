@@ -20,9 +20,11 @@ while True:
   
     if query == 'n': 
         # Playing next song
-        mixer.music.fadeout(3000)
-        print("Enter to continue")
-        if not input():
+        if index+1 >= len(files):
+            print("Reached the end!")
+        else:
+            mixer.music.fadeout(3000)
+            os.system("pause")
             index += 1
             mixer.music.load('music/' + files[index])
             print(f"Now playing: {files[index]}")
