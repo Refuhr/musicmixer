@@ -16,7 +16,7 @@ def help():
 ██  ██  ██ ██    ██      ██ ██ ██      ██  ██  ██ ██  ██ ██  ██      ██   ██ 
 ██      ██  ██████  ███████ ██  ██████ ██      ██ ██ ██   ██ ███████ ██   ██ 
     """)
-    print("Press:\n'n' to play the next song\n'l' to play the last song\n'o' to manually overwrite to a specific song\n'p' to pause/play the music\n'v' to change the volume") 
+    print("Press:\n'n' to play the next song\n'l' to play the last song\n'j' to manually jump to a specific song\n'p' to pause/play the music\n'r' to restart the current song\n'v' to change the volume") 
     print("'e' to exit the program\n") 
 
 help()
@@ -73,7 +73,7 @@ while True:
             mixer.music.fadeout(500)
             index -= 1
             play_song()
-    elif query == 'o': 
+    elif query == 'j': 
         # Jump to specific song
         print("Type in the lastname: ")
         overwrite = input()
@@ -109,5 +109,8 @@ while True:
     elif query == 'h':
         # Print out help
         help()
+    elif query == 'r':
+        # Restarting the song
+        play_song()
     else:
-        print("Character could not be found, try 'h' for help.")
+        print("Function could not be found, try 'h' for help.")
