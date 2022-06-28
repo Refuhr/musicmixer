@@ -21,10 +21,12 @@ while True:
     if query == 'n': 
         # Playing next song
         mixer.music.fadeout(3000)
-        index += 1
-        mixer.music.load('music/' + files[index])
-        print(f"Now playing: {files[index]}")
-        mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1]))        
+        print("Enter to continue")
+        if not input():
+            index += 1
+            mixer.music.load('music/' + files[index])
+            print(f"Now playing: {files[index]}")
+            mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1]))        
     elif query == 'p': 
         # Playing previous song
         mixer.music.stop()
