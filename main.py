@@ -36,16 +36,16 @@ while True:
         # Jump to specific song
         print("Type in the lastname: ")
         overwrite = input()
-        #print(override)
-        try:
-            for i in files:
-                if i[4:-1].split("_")[0] == overwrite:
-                    print(i)
-                    index = files.index(i)
-        except :
-            print("Name could not be found!")
-            stop = True
-        if stop:
+        index_old = index
+        for i in files:
+            if i[4:-1].split("_")[0] == overwrite:
+                print(i)
+                index = files.index(i)
+        if index_old == index:
+            print(f"The name: '{overwrite}' could not be found!")
+            
+        else:
+            print(f"Switching to '{files[index]}'.")
             mixer.music.fadeout(500)
             mixer.music.load('music/' + files[index])
             print(f"Now playing: {files[index]}")
