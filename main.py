@@ -16,7 +16,7 @@ def help():
 ██  ██  ██ ██    ██      ██ ██ ██      ██  ██  ██ ██  ██ ██  ██      ██   ██ 
 ██      ██  ██████  ███████ ██  ██████ ██      ██ ██ ██   ██ ███████ ██   ██ 
     """)
-    print("Press:\n'n' to play the next song\n'l' to play the last song\n'j' to manually jump to a specific song\n'p' to pause/play the music\n'r' to restart the current song\n'v' to change the volume") 
+    print("Press:\n'n' to play the next song\n'l' to play the last song\n'm' to manually jump to a specific song\n'p' to pause/play the music\n'r' to restart the current song\n'v' to change the volume") 
     print("'e' to exit the program\n") 
 
 help()
@@ -73,8 +73,8 @@ while True:
             mixer.music.fadeout(500)
             index -= 1
             play_song()
-    elif query == 'j': 
-        # Jump to specific song
+    elif query == 'm': 
+        # manually jump to specific song
         print("Type in the lastname: ")
         overwrite = input()
         index_old = index
