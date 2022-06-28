@@ -5,6 +5,8 @@ from pygame import mixer
 
 path="music"
 files = os.listdir(path)
+#print(f"{files}\n")
+files.sort()
 print(f"{files}\n")
 index=0
 mixer.init()
