@@ -33,8 +33,9 @@ while True:
             print("Reached the end!")
         else:
             mixer.music.fadeout(3000)
-            os.system("pause")
             index += 1
+            print(f"About to play: {files[index]}\n")
+            os.system("pause")
             play_song()       
     elif query == 'p': 
         # Playing previous song
