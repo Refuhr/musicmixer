@@ -44,7 +44,7 @@ while True:
 ██  ██  ██ ██    ██      ██ ██ ██      ██  ██  ██ ██  ██ ██  ██      ██   ██ 
 ██      ██  ██████  ███████ ██  ██████ ██      ██ ██ ██   ██ ███████ ██   ██ 
 """)
-    print("Press 'n' to play the next song, 'p' to play previous song, 'o' to manually overwrite to a specific song, 's' to stop/pause the music, 'r' to resume the music, v to change the volume") 
+    print("Press 'n' to play the next song, 'l' to play the last song, 'o' to manually overwrite to a specific song, 'p' to pause/play the music, v to change the volume") 
     print("Press 'e' to exit the program") 
     query = input("  ") 
   
@@ -59,8 +59,8 @@ while True:
             print("Press any key to continue...")
             input()
             play_song()       
-    elif query == 'p': 
-        # Playing previous song
+    elif query == 'l': 
+        # Playing the last song
         if index-1 < 0:
             print("There is no song before that!")
         else:
@@ -87,12 +87,12 @@ while True:
         # Stop the mixer 
         mixer.music.stop() 
         exit()
-    elif query == 's': 
-        # Pause the music 
-        mixer.music.pause() 
-    elif query == 'r': 
-        # Resume the music
-        mixer.music.unpause()
+    elif query == 'p': 
+        # Pause/resume the music 
+        if mixer.music.get_busy():
+            mixer.music.pause()
+        else:
+            mixer.music.unpause()
     elif query == 'v': 
         # Change the volume
         print("Type a number from 0.0 to 1.0")
