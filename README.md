@@ -3,9 +3,10 @@ This application is used to play small clips of music for an event. The songs fa
 # Usage
 put the files to be played in a directory of your choice (default:music). Can be changed in main.py in line 6.
 files should be named: \[number]\_\[lastname]\_\[firstname]-\[start time(in seconds)].mp3 example: 002_Mustermann_Max-21.mp3  
-Rest of the program self explanatory.  
+The rest of the program is self explanatory.  
 # Features  
 -pause/play  
 -previous song  
 -next song  
--jump to specific song by lastname
+-jump to specific song by lastname  
+-change volume
