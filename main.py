@@ -8,7 +8,8 @@ mixer.init()
 mixer.music.load('music/' + files[index])
 print("Press any key to start the music script")
 os.system("pause >nul")
-mixer.music.play(start=31)
+print(f"Now playing: {files[index]}")
+mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1]))
 
 while True: 
   
@@ -21,13 +22,15 @@ while True:
         mixer.music.fadeout(3000)
         index += 1
         mixer.music.load('music/' + files[index])
-        mixer.music.play()        
+        print(f"Now playing: {files[index]}")
+        mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1]))        
     elif query == 'p': 
         # Playing previous song
         mixer.music.stop()
         index -= 1
         mixer.music.load('music/' + files[index])
-        mixer.music.play() 
+        print(f"Now playing: {files[index]}")
+        mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1])) 
     elif query == 'e': 
         # Stop the mixer 
         mixer.music.stop() 
