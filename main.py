@@ -17,7 +17,7 @@ def play_song():
 
 print(f"About to play: {files[index]}\n")
 print("Press any key to start the music script")
-os.system("pause >nul")
+input()
 play_song()
 
 
@@ -35,7 +35,8 @@ while True:
             mixer.music.fadeout(3000)
             index += 1
             print(f"About to play: {files[index]}\n")
-            os.system("pause")
+            print("Press any key to continue...")
+            input()
             play_song()       
     elif query == 'p': 
         # Playing previous song
