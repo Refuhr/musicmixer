@@ -1,6 +1,7 @@
 import os
 from pygame import mixer
-
+from mutagen.mp3 import MP3
+import datetime
 
 
 path="music"                #path/directory where the songs are located
@@ -16,7 +17,7 @@ def help():
 ██  ██  ██ ██    ██      ██ ██ ██      ██  ██  ██ ██  ██ ██  ██      ██   ██ 
 ██      ██  ██████  ███████ ██  ██████ ██      ██ ██ ██   ██ ███████ ██   ██ 
     """)
-    print("Press:\n'n' to play the next song\n'l' to play the last song\n'j' to manually jump to a specific song\n'p' to pause/play the music\n'r' to restart the current song\n'v' to change the volume") 
+    print("Press:\n'n' to play the next song\n'l' to play the last song\n'm' to manually jump to a specific song\n'p' to pause/play the music\n'r' to restart the current song\n'v' to change the volume") 
     print("'e' to exit the program\n") 
 
 help()
@@ -31,6 +32,7 @@ def play_song():
     mixer.music.load('music/' + files[index])
     print(f"Now playing: {files[index]}")
     mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1]), fade_ms=fade_in)
+    print(f"\nTime remaining in minutes: {str(datetime.timedelta(seconds=int(MP3('music/' + files[index]).info.length)-int(files[index][:len(files[index])-4].split('-')[1])))}")
 
 def check_float(num):
     try:
@@ -73,8 +75,8 @@ while True:
             mixer.music.fadeout(500)
             index -= 1
             play_song()
-    elif query == 'j': 
-        # Jump to specific song
+    elif query == 'm': 
+        # Manually jump to specific song
         print("Type in the lastname: ")
         overwrite = input()
         index_old = index
