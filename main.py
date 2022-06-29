@@ -47,15 +47,15 @@ def check_float(num):
 
 print(f"About to play: {files[index]}\n")
 print("Press enter to start the music script, e to exit.")
-while not starting:
+while True:
     try:
         if keyboard.is_pressed('e'):
             mixer.music.stop()
             print("Exiting...")
             exit()
         elif keyboard.is_pressed('enter'):
-            starting=True
             play_song(fade_in)
+            break
     except:
         break
 
