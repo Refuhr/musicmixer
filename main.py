@@ -16,7 +16,7 @@ def help():
 ██  ██  ██ ██    ██      ██ ██ ██      ██  ██  ██ ██  ██ ██  ██      ██   ██ 
 ██      ██  ██████  ███████ ██  ██████ ██      ██ ██ ██   ██ ███████ ██   ██ 
     """)
-    print("Press:\n'n' to play the next song\n'l' to play the last song\n'm' to manually jump to a specific song\n'p' to pause/play the music\n'r' to restart the current song\n'v' to change the volume") 
+    print("Press:\n'n' or 'enter' to play the next song\n'l' to play the last song\n'm' to manually jump to a specific song\n'p' to pause/play the music\n'r' to restart the current song\n'v' to change the volume") 
     print("'e' to exit the program\n") 
 
 help()
@@ -24,6 +24,7 @@ files = os.listdir(path)
 files.sort()
 print(f"{files}\n")
 index=0
+exists = False
 mixer.init()
 mixer.music.set_volume(volume)
 
@@ -42,33 +43,52 @@ def check_float(num):
         print("Not a float try again!")
 
 print(f"About to play: {files[index]}\n")
-print("Press any key to start the music script, e to exit.")
-if input() == "e":
+print(f"Press 'enter' to start the first song: {files[index]}, 'c' to continue without playing a song (start after that with 'l'), e to exit.")
+start= input()
+if start == "e":
     mixer.music.stop()
     print("Exiting...")
     exit()
-play_song()
-
+elif start == "":
+    play_song()
+elif start == "c":
+    help()
 
 while True: 
     print("\nPress h for Help, e for exit.")
+    if index+1 >= len(files):
+        y = ""
+    else:
+        y = "Next song: " + files[index+1]
+    if index > 0 and y != "":
+        x = ", previous song: " + files[index-1]
+    elif index > 0 and y == "":
+        x = "Previous song: " + files[index-1]
+    elif index == 0 and not exists:
+        x = " Press 'l' to start with the first song: " + files[index] + " 'enter' to start with second one."
+        exists = True
+    else:
+        x = ""
+    print(f"{y}{x}")
     query = input() 
   
-    if query == 'n': 
+    if query == 'n' or query == '': 
         # Playing next song
         if index+1 >= len(files):
             print("Reached the end!")
+            mixer.music.fadeout(fade_out)
         else:
             mixer.music.fadeout(fade_out)
             index += 1
             print(f"About to play: {files[index]}\n")
-            print("Press any key to start the next song.")
+            print("Press enter to start the next song.")
             input()
             play_song()       
     elif query == 'l': 
         # Playing the last song
         if index-1 < 0:
-            print("There is no song before that!")
+            print("There is no song before that! Restarting current song...")
+            play_song()
         else:
             mixer.music.fadeout(500)
             index -= 1
