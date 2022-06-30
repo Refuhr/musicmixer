@@ -3,7 +3,7 @@ from pygame import mixer
 
 
 
-path="music"                #path/directory where the songs are located
+path="music/"                #path/directory where the songs are located
 fade_in=1000                #fade in time in ms
 fade_out=3000               #fade out time in ms
 volume=0.1                  #change the volume from 0.0 to 1.0
@@ -20,11 +20,21 @@ def help():
     print("'e' to exit the program\n") 
 
 help()
-files = os.listdir(path)
-files.sort()
-for i in files:
-    print(i)
-#print(f"{files}\n")
+try:
+    files = os.listdir(path)
+    for f in files:
+        if os.path.isdir(path+f):
+           files.remove(f)
+    files.sort()
+    for i in files:
+        print(i)
+    #print(f"{files}\n")
+    if not files:
+        print("Directory is empty! Exiting...")
+        exit()
+except FileNotFoundError:
+    print("Directory could not be found! Exiting...")
+    exit()
 index=0
 exists = False
 mixer.init()
@@ -32,7 +42,7 @@ mixer.music.set_volume(volume)
 
 def play_song():
     mixer.music.stop()
-    mixer.music.load('music/' + files[index])
+    mixer.music.load(path + files[index])
     print(f"Now playing: {files[index]}")
     mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1]), fade_ms=fade_in)
 
