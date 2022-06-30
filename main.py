@@ -46,7 +46,7 @@ def check_float(num):
         print("Not a float try again!")
 
 print(f"About to play: {files[index]}\n")
-print(f"Press 'enter' to start the first song: {files[index]}, 'c' to continue without playing a song (start after that with 'l'), e to exit.")
+print(f"Press 'enter' to start the first song: {files[index]}, any key besides 'e' and 'enter' to continue without playing a song, e to exit.")
 start= input()
 if start == "e":
     mixer.music.stop()
@@ -69,25 +69,32 @@ while True:
     elif index > 0 and y == "":
         x = "Previous song: " + files[index-1]
     elif index == 0 and not exists:
-        x = " Press 'l' to start with the first song: " + files[index] + " 'enter' to start with second one."
-        exists = True
+        x = " Press 'enter' to start with the first song: " + files[index] + " 'n' to start with second one."
+
     else:
         x = ""
     print(f"{y}{x}")
     query = input() 
   
-    if query == 'n' or query == '': 
+    if not exists and query == '':
+        exists = True
+        play_song()  
+    elif query == 'n' or query == '': 
         # Playing next song
         if index+1 >= len(files):
             print("Reached the end!")
             mixer.music.fadeout(fade_out)
         else:
-            mixer.music.fadeout(fade_out)
-            index += 1
-            print(f"About to play: {files[index]}\n")
-            print("Press enter to start the next song.")
-            input()
-            play_song()       
+            if mixer.music.get_busy():
+                mixer.music.fadeout(fade_out)
+                index += 1
+                print(f"About to play: {files[index]}\n")
+                print("Press enter to start the next song.")
+                input()
+                play_song()
+            else:
+                index += 1
+                play_song()
     elif query == 'l': 
         # Playing the last song
         if index-1 < 0:
