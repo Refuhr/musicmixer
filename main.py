@@ -21,6 +21,7 @@ def help():
 
 help()
 try:
+    print("Songs about to be played:")
     files = os.listdir(path)
     for f in files:
         if os.path.isdir(path+f):
@@ -55,18 +56,7 @@ def check_float(num):
     except ValueError:
         print("Not a float try again!")
 
-print(f"About to play: {files[index]}\n")
-print(f"Press 'enter' to start the first song: {files[index]}, any key besides 'e' and 'enter' to continue without playing a song, e to exit.")
-start= input()
-if start == "e":
-    mixer.music.stop()
-    print("Exiting...")
-    exit()
-elif start == "":
-    exists = True
-    play_song()
-elif start == "c":
-    help()
+#print(f"\nAbout to play: {files[index]}\n")
 
 while True: 
     print("\nPress h for Help, e for exit.")
@@ -79,7 +69,8 @@ while True:
     elif index > 0 and y == "":
         x = "Previous song: " + files[index-1]
     elif index == 0 and not exists:
-        x = " Press 'enter' to start with the first song: " + files[index] + " 'n' to start with second one."
+        help()
+        x = "\nPress 'enter' to start with the first song: " + files[index] + " 'n' to start with second one: "  + files[index+1] + ", 'e' to exit."
 
     else:
         x = ""
