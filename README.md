@@ -9,7 +9,8 @@ or:
 python main.py
 ```
 put the files to be played in a directory of your choice (default:music). Can be changed in main.py in line 6.
-files should be named:`\[number]\_\[lastname]\_\[firstname]-\[start time(in seconds)].\[music file extension (ogg recommended)] example: 002_Mustermann_Max-21.ogg` 
+files should be named:
+`[number]_[lastname]_[firstname]-[start time(in seconds)].[music file extension (ogg recommended)] example: 002_Mustermann_Max-21.ogg` 
 The rest of the program is self explanatory.  
 # Features  
 -pause/play  
