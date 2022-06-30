@@ -22,7 +22,9 @@ def help():
 help()
 files = os.listdir(path)
 files.sort()
-print(f"{files}\n")
+for i in files:
+    print(i)
+#print(f"{files}\n")
 index=0
 exists = False
 mixer.init()
