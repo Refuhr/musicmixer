@@ -71,10 +71,10 @@ while True:
     elif index == 0 and not exists:
         help()
         x = "\nPress 'enter' to start with the first song: " + files[index] + " 'n' to start with second one: "  + files[index+1] + ", 'e' to exit."
-
     else:
         x = ""
-    print(f"{y}{x}")
+    print(y+x)
+    if exists: print(f'Current song: {files[index]} {"(paused)" if not mixer.music.get_busy() else ""}')
     query = input() 
   
     if not exists and query == '':
