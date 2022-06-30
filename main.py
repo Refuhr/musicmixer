@@ -29,7 +29,7 @@ mixer.init()
 mixer.music.set_volume(volume)
 
 def play_song():
-    mixer.music.unpause()
+    mixer.music.stop()
     mixer.music.load('music/' + files[index])
     print(f"Now playing: {files[index]}")
     mixer.music.play(start=int(files[index][:len(files[index])-4].split("-")[1]), fade_ms=fade_in)
@@ -51,6 +51,7 @@ if start == "e":
     print("Exiting...")
     exit()
 elif start == "":
+    exists = True
     play_song()
 elif start == "c":
     help()
