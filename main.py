@@ -98,6 +98,7 @@ while True:
                 play_song()
     elif query == 'l': 
         # Playing the last song
+        exists = True
         if index-1 < 0:
             print("There is no song before that! Restarting current song...")
             play_song()
@@ -118,6 +119,7 @@ while True:
             print(f"The name: '{overwrite}' could not be found!")
             
         else:
+            exists = True
             print(f"Switching to '{files[index]}'.")
             mixer.music.fadeout(500)
             play_song()
