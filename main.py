@@ -3,7 +3,7 @@ from pygame import mixer
 
 
 
-path="music2/"               #path/directory where the songs are located
+path="music/"               #path/directory where the songs are located
 fade_in=1000                #fade in time in ms
 fade_out=3000               #fade out time in ms
 volume=0.1                  #change the volume from 0.0 to 1.0
